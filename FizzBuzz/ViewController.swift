@@ -48,18 +48,22 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(sender: UIButton) {
         switch sender {
             case numberButton:
-            play(Move.Number)
+                play(Move.Number)
             case fizzButton:
-            play(Move.Fizz)
+                play(Move.Fizz)
             case buzzButton:
-            play(Move.Buzz)
+                play(Move.Buzz)
             case fizzBuzzButton:
-            play(Move.FizzBuzz)
+                play(Move.FizzBuzz)
+            case playAgainButton:
+                gameScore = 0
+                game?.score = 0
             default:
             print("Invalid selection")
         
         }
     }
+    
     
     @IBOutlet weak var numberButton: UIButton!
     
@@ -68,6 +72,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var buzzButton: UIButton!
     
     @IBOutlet weak var fizzBuzzButton: UIButton!
+    
+    @IBOutlet weak var playAgainButton: UIButton!
     
 }
 

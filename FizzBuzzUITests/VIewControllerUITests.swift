@@ -107,5 +107,17 @@ class VIewControllerUITests: XCTestCase {
         let newScore = numberButton.label
         XCTAssertEqual(newScore, "15")
     }
+    
+    func testPlayAgainButton() {
+        let app = XCUIApplication()
+        let playAgainButton = app.buttons["playAgainButton"]
+        let numberButton = app.buttons["numberButton"]
+        
+        numberButton.tap()
+        numberButton.tap()
+        playAgainButton.tap()
+        let newScore = numberButton.label
+        XCTAssertEqual(newScore, "0")
+    }
 
 }
