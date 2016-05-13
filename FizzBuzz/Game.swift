@@ -30,6 +30,7 @@ class Game: NSObject {
         }
         else
         {
+            score = 0
             return (false, score)
         }
     }
