@@ -81,6 +81,5 @@ class ViewControllerUnitTests: XCTestCase {
         let highScore = Int(viewController.scoreLabel.text!)
         XCTAssertEqual(3, highScore)
     }
-
    
 }

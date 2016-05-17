@@ -33,6 +33,24 @@ class ViewController: UIViewController {
         }
     }
     
+    private func wait(seconds: NSTimeInterval) {
+        let dateAfterWait = NSDate(timeIntervalSinceNow: seconds)
+        NSRunLoop.mainRunLoop().runUntilDate(dateAfterWait)
+    }
+    
+    var correctMove : Bool? {
+        didSet {
+            if correctMove == false
+            {
+                backgroundView.backgroundColor = UIColor(hue: 0.0194, saturation: 1, brightness: 0.97, alpha: 1.0) /* #f71c00 */
+                
+                wait(0.2)
+                
+                backgroundView.backgroundColor = UIColor(red: 0.1451, green: 0.8275, blue: 0.8, alpha: 1.0) /* #25d3cc */
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         game = Game()
@@ -57,6 +75,7 @@ class ViewController: UIViewController {
         let response = unwrappedGame.play(move)
         gameScore = response.score
         highScore = response.highScore
+        correctMove = response.right
     }
 
     @IBAction func buttonTapped(sender: UIButton) {
@@ -82,7 +101,6 @@ class ViewController: UIViewController {
         
         }
         
-
     }
     
     
@@ -98,5 +116,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var backgroundView: UIView!
 }
 

@@ -125,13 +125,25 @@ class VIewControllerUITests: XCTestCase {
         let playAgainButton = app.buttons["playAgainButton"]
         let numberButton = app.buttons["numberButton"]
         let scoreLabel = app.staticTexts["scoreLabel"]
-        
+
         numberButton.tap()
         numberButton.tap()
         playAgainButton.tap()
         let newScore = scoreLabel.label
         XCTAssertEqual(newScore, "2")
     }
+    
+//    func testFlashOnWrongMove() {
+//        let app = XCUIApplication()
+//        let numberButton = app.buttons["numberButton"]
+//        let backgroundView = app.collectionViews["backgroundView"]
+//        
+//        numberButton.tap()
+//        numberButton.tap()
+//        numberButton.tap()
+//        
+//        let result = backgroundView. //no method to check color change
+//    }
     
 
 }
