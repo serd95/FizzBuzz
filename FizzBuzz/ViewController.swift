@@ -19,7 +19,19 @@ class ViewController: UIViewController {
             numberButton.setTitle("\(unwrappedScore)", forState: .Normal)
         }
     }
+
+    
     var game : Game?
+    
+    var highScore : Int? {
+        didSet {
+            guard let unwrappedHighScore = highScore else {
+                print("highScore is nil")
+                return
+            }
+            scoreLabel.text = ("\(unwrappedHighScore)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +41,7 @@ class ViewController: UIViewController {
             return
         }
         gameScore = checkedGame.score
+        highScore = checkedGame.highScore
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +56,7 @@ class ViewController: UIViewController {
         }
         let response = unwrappedGame.play(move)
         gameScore = response.score
+        highScore = response.highScore
     }
 
     @IBAction func buttonTapped(sender: UIButton) {
@@ -56,12 +70,19 @@ class ViewController: UIViewController {
             case fizzBuzzButton:
                 play(Move.FizzBuzz)
             case playAgainButton:
+                if gameScore >= highScore
+                {
+                    highScore = gameScore
+                }
+                
                 gameScore = 0
                 game?.score = 0
             default:
             print("Invalid selection")
         
         }
+        
+
     }
     
     
@@ -74,6 +95,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var fizzBuzzButton: UIButton!
     
     @IBOutlet weak var playAgainButton: UIButton!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
     
 }
 

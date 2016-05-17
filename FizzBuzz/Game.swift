@@ -11,27 +11,35 @@ import Foundation
 class Game: NSObject {
     
     var score: Int
+    var highScore: Int
     let brain: Brain
     
     override init() {
         score = 0
+        highScore = 0
         brain = Brain()
         super.init()
     }
     
-    func play(move: Move) ->(right: Bool, score: Int)  {
+    func play(move: Move) ->(right: Bool, score: Int, highScore: Int)  {
        
         let result = brain.check(score + 1)
         
         if result == move
         {
             score = score + 1
-            return (true, score)
+            
+            if score >= highScore
+            {
+                highScore = score
+            }
+            
+            return (true, score, highScore)
         }
         else
         {
             score = 0
-            return (false, score)
+            return (false, score, highScore)
         }
     }
     

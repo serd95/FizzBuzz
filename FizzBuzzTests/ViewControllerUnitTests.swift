@@ -71,5 +71,16 @@ class ViewControllerUnitTests: XCTestCase {
         let newScore = viewController.gameScore
         XCTAssertEqual(newScore, 0)
     }
+    
+    func testHighScore() {
+        viewController.play(Move.Number)
+        viewController.play(Move.Number)
+        viewController.play(Move.Fizz)
+        viewController.play(Move.Buzz)
+        viewController.play(Move.Number)
+        let highScore = Int(viewController.scoreLabel.text!)
+        XCTAssertEqual(3, highScore)
+    }
+
    
 }

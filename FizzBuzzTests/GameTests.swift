@@ -110,4 +110,29 @@ class GameTests: XCTestCase {
         let result = response.score
         XCTAssertEqual(result, 0)
     }
+    
+    func testHighScore() {
+        game.score = 5
+        game.highScore = 5
+        game.play(Move.FizzBuzz)
+        XCTAssertEqual(game.highScore, 5)
+    }
+    
+    func testHighScore2() {
+        game.score = 4
+        game.highScore = 5
+        game.play(Move.Buzz)
+        game.play(Move.Fizz)
+        game.play(Move.Number)
+        game.play(Move.FizzBuzz)
+        XCTAssertEqual(game.highScore, 7)
+    }
+    
+    func testHighScoreTuple() {
+        game.highScore = 11
+        game.score = 5
+        let response = game.play(Move.Buzz)
+        let result = response.highScore
+        XCTAssertEqual(result, 11)
+    }
 }
